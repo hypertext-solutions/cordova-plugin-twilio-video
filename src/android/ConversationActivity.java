@@ -1,6 +1,5 @@
 package com.ekreative.cordova.videoconversations;
 
-import io.ionic.starter.R;
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
