@@ -1,5 +1,6 @@
-package cordova-plugin-twilio-video;
+package com.ekreative.cordova.videoconversations;
 
+import io.ionic.starter.R;
 import org.apache.cordova.BuildHelper;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;

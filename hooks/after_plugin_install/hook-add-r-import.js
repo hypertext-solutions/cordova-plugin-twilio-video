@@ -14,24 +14,24 @@ if (process.env.TARGET) {
     target = process.env.TARGET;
 }
 
-    var ourconfigfile = path.join( "plugins", "android.json");
-    var configobj = JSON.parse(fs.readFileSync(ourconfigfile, 'utf8'));
-  // Add java files where you want to add R.java imports in the following array
+var ourconfigfile = path.join("plugins", "android.json");
+var configobj = JSON.parse(fs.readFileSync(ourconfigfile, 'utf8'));
+// Add java files where you want to add R.java imports in the following array
 
-    var filestoreplace = [
-        "platforms/android/src/com/ekreative/cordova/videoconversations/ConversationActivity.java",
-        "platforms/android/src/com/ekreative/cordova/videoconversations/Dialog.java"
-    ];
-    filestoreplace.forEach(function(val, index, array) {
-        if (fs.existsSync(val)) {
-          console.log("Android platform available !");
-          //Getting the package name from the android.json file,replace with your plugin's id
-          var packageName = configobj.installed_plugins["cordova-plugin-twilio-video"]["PACKAGE_NAME"];
-          console.log("With the package name: "+packageName);
-          console.log("Adding import for R.java");
-            replace_string_in_file(val,"package cordova-plugin-twilio-video;","package cordova-plugin-twilio-video;\n\nimport "+packageName+".R;");
+var filestoreplace = [
+    "platforms/android/app/src/main/java/com/ekreative/cordova/videoconversations/ConversationActivity.java",
+    "platforms/android/app/src/main/java/com/ekreative/cordova/videoconversations/Dialog.java"
+];
+filestoreplace.forEach(function (val, index, array) {
+    if (fs.existsSync(val)) {
+        console.log("Android platform available !");
+        //Getting the package name from the android.json file,replace with your plugin's id
+        var packageName = configobj.installed_plugins["cordova-plugin-twilio-video"]["PACKAGE_NAME"];
+        console.log("With the package name: " + packageName);
+        console.log("Adding import for R.java");
+        replace_string_in_file(val, "package com.ekreative.cordova.videoconversations;", "package com.ekreative.cordova.videoconversations;\n\nimport " + packageName + ".R;");
 
-        } else {
-            console.log("No android platform found! :(");
-        }
-    });
+    } else {
+        console.log("No android platform found! :(");
+    }
+});
